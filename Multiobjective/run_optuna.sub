@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+#BSUB -J MORL
+#BSUB -o Output/MORL_%J.out
+#BSUB -e Output/MORL_%J.err
+#BSUB -q hpc
+#BSUB -n 12
+#BSUB -R "rusage[mem=8GB]"
+#BSUB -R "select[model == XeonGold6226R]"
+#BSUB -W 72:00
+
+module load python3/3.10.7
+source ../../venv2/bin/activate
+python3 optuna_optimization.py --experiment_name "HPC_hyperparam_tuning_CAPQL2" --train_eps 20
